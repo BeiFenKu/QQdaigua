@@ -10,23 +10,43 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.king.Fragment1.BlankFragment1;
+
 
 public class MainActivity extends AppCompatActivity {
+    public static String app_name = "帝王代挂";
+    public static String app_subName = " For Android";
+    public static String admin_pwd = "123456";
+
+    private Toolbar toolbar;
+    private FloatingActionButton fab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        initv();
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new BlankFragment1()).commit();
+    }
+
+    private void initv() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(Color.rgb(24,180,237));
+        toolbar.setTitle(app_name + app_subName);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
         fab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Snackbar.make(v, "你已经长按", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .show();
                 return true;
             }
         });
@@ -34,26 +54,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "长按我可进入网页版哦~", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                        .show();
             }
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

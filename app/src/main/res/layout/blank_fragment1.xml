@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@mipmap/king_bj"
+             tools:context="com.king.Fragment1.BlankFragment1">
+
+
+    <TextView
+        android:text="客服：576777915"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_kf"
+        android:textSize="16sp"
+        android:textColor="@color/kefuColor"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="14dp"
+        android:textStyle="normal|bold"/>
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/image_touxiang"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        app:srcCompat="@mipmap/account"
+        android:id="@+id/imageView2"
+        android:background="@color/gray"/>
+
+        <EditText
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/et_account"
+            android:layout_width="match_parent"
+            android:layout_toRightOf="@+id/imageView2"
+            android:background="@color/white"
+            android:hint="请输入代挂QQ帐号..."
+            android:textSize="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif"
+            android:paddingRight="10dp"
+            android:padding="5dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/rl1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@mipmap/pwd"
+            android:id="@+id/imageView3"
+            android:background="@color/gray"/>
+
+        <EditText
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_toRightOf="@+id/imageView3"
+            android:background="@color/white"
+            android:hint="请输入代挂QQ密码..."
+            android:textSize="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif"
+            android:paddingRight="10dp"
+            android:padding="5dp"/>
+
+    </RelativeLayout>
+
+    <CheckBox
+        android:text="记住密码"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignStart="@+id/relativeLayout"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/white"
+        android:id="@+id/cb_remaber"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:text="登录失败？"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_alignBaseline="@+id/cb_remaber"
+        android:layout_alignBottom="@+id/cb_remaber"
+        android:layout_alignEnd="@+id/relativeLayout"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/cb_remaber"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/bt_login"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/blue_title"
+            android:textColor="@color/white"
+            android:text="马上登录"
+            android:textSize="19sp"/>
+
+
+        <Button
+            android:id="@+id/bt_reg"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:text="注册代挂"
+            android:textSize="19sp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/image_touxiang"
+        android:layout_below="@+id/tv_kf"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
