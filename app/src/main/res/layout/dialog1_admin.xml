@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="100dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="18dp"
+        android:text="登录失败原因：\n1.未开通代挂，无法登录\n2.平台密码不符合，请点击找回密码找回"
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart"
+        android:padding="10dp"/>
+
+</LinearLayout>

@@ -1,8 +1,10 @@
 package com.king.qqdaigua;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.king.Fragment1.BlankFragment1;
+import com.king.util.OperatingSharedPreferences;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private int qi_sign = 0;
 
 
     @Override
@@ -29,14 +33,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initv();
-
+        new Handler().postDelayed(new LoadMainTabTask(), 300);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new BlankFragment1()).commit();
     }
 
+    /**
+     * <pre>
+     * 基本功能：加载介绍界面或主页面
+     * 编写：Jason
+     * </pre>
+     */
+    private class LoadMainTabTask implements Runnable {
+        @Override
+        public void run() {
+            qi_sign++;
+            boolean opentimes = OperatingSharedPreferences
+                    .getSharedPreferences(getApplicationContext());
+            // 若为新安装的应用，进入介绍界面,并保存启动次数到SharedPreferences。若不是新安装，则直接进入首页
+            if (opentimes) {
+                OperatingSharedPreferences
+                        .setSharedPreferences(getApplicationContext());
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),
+                        PowerSplashActivity.class);
+                startActivity(intent);//打开引导页
+            } else {
+                if (qi_sign != 0) {
+                } else {
+                    Intent intent = new Intent(getApplicationContext(),
+                            MainActivity.class);
+                    startActivity(intent);//直接打开首页
+                }
+            }
+        }
+    }
+
     private void initv() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setBackgroundColor(Color.rgb(24,180,237));
+        toolbar.setBackgroundColor(Color.rgb(24, 180, 237));
         toolbar.setTitle(app_name + app_subName);
         setSupportActionBar(toolbar);
 
