@@ -6,9 +6,8 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
-import com.king.util.CustomTextView;
+import com.king.ewrite.CustomTextView;
 
 /**
  * Created by KingLee on 2018/4/11.

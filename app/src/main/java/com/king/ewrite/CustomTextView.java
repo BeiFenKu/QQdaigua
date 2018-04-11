@@ -1,4 +1,4 @@
-package com.king.util;
+package com.king.ewrite;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,6 +11,12 @@ import android.widget.TextView;
  * Created by KingLee on 2018/4/11.
  */
 
+/***
+ *
+ * 圆形框 Textview
+ * 用于启动图右上角提示
+ *
+ */
 public class CustomTextView extends TextView {
     private Paint mPaint;
     public CustomTextView(Context context) {

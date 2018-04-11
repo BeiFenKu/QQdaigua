@@ -9,7 +9,7 @@
         android:scaleType="fitXY"
         android:src="@mipmap/qdt_main" />
 
-    <com.king.util.CustomTextView
+    <com.king.ewrite.CustomTextView
         android:id="@+id/enter"
         android:layout_width="40dp"
         android:layout_height="40dp"

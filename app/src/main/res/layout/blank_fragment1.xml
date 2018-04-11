@@ -53,6 +53,23 @@
             android:paddingRight="10dp"
             android:textSize="15dp"/>
 
+        <EditText
+            android:id="@+id/et_reg_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView2"
+            android:background="@color/white"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="请输入要开通的QQ帐号..."
+            android:inputType="text"
+            android:padding="5dp"
+            android:visibility="invisible"
+            android:paddingRight="10dp"
+            android:textSize="15dp"/>
+
     </RelativeLayout>
 
 
@@ -88,6 +105,61 @@
             android:padding="5dp"
             android:paddingRight="10dp"
             android:textSize="15dp"/>
+
+
+        <EditText
+            android:id="@+id/et_reg_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView3"
+            android:background="@color/white"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="请输入要开通的QQ密码..."
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:visibility="invisible"
+            android:paddingRight="10dp"
+            android:textSize="15dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_regkm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:visibility="invisible"
+        android:layout_marginTop="17dp">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            app:srcCompat="@mipmap/pwd"/>
+
+        <EditText
+            android:id="@+id/et_km"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView4"
+            android:background="@color/white"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="请输入卡密..."
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:paddingRight="10dp"
+            android:textSize="15dp"/>
+
 
     </RelativeLayout>
 
@@ -131,11 +203,10 @@
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@color/blue_title"
+            android:background="@drawable/king_button"
             android:text="马上登录"
             android:textColor="@color/white"
             android:textSize="19sp"/>
-
 
         <Button
             android:id="@+id/bt_reg"
@@ -143,22 +214,60 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@color/white"
+            android:background="@drawable/king_button1"
             android:text="注册代挂"
             android:textColor="@color/black"
             android:textSize="19sp"/>
 
     </LinearLayout>
 
-    <ImageView
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/cb_remaber"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="17dp"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_loginback"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/king_button1"
+            android:text="返回登录"
+            android:textColor="@color/black"
+            android:textSize="19sp"/>
+
+        <Button
+            android:id="@+id/bt_regkm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/king_button"
+            android:text="提交注册"
+            android:textColor="@color/white"
+            android:textSize="19sp"/>
+
+    </LinearLayout>
+
+    <com.king.ewrite.CircleImageView
         android:id="@+id/image_touxiang"
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_below="@+id/tv_kf"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@mipmap/ic_launcher"/>
+        app:srcCompat="@mipmap/moren_qq"/>
 
     <LinearLayout
+        android:id="@+id/ll3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="110dp"
@@ -171,8 +280,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:background="@color/white"
+            android:background="@drawable/king_button1"
             android:text="找回密码"
+            android:textColor="@color/black"
+            android:textSize="19sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll4"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_below="@+id/ll1"
+        android:visibility="invisible"
+        android:layout_marginTop="17dp">
+
+        <Button
+            android:id="@+id/bt_buy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/king_button1"
+            android:text="购买卡密"
             android:textColor="@color/black"
             android:textSize="19sp"/>
     </LinearLayout>
