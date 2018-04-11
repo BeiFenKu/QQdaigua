@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 /*
- * 基本功能：存储和访问SharedPreferences
+ * 基本功能：存储和访问SharedPreferences，判断是否第一次安装打开。
  * 创建：Jason
  */
 public class OperatingSharedPreferences {

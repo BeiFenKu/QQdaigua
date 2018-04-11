@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initv();
-        new Handler().postDelayed(new LoadMainTabTask(), 300);
+        new Handler().postDelayed(new LoadMainTabTask(), 0);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new BlankFragment1()).commit();
     }
@@ -59,12 +59,9 @@ public class MainActivity extends AppCompatActivity {
                         PowerSplashActivity.class);
                 startActivity(intent);//打开引导页
             } else {
-                if (qi_sign != 0) {
-                } else {
-                    Intent intent = new Intent(getApplicationContext(),
-                            MainActivity.class);
-                    startActivity(intent);//直接打开首页
-                }
+                Intent intent = new Intent(getApplicationContext(),
+                        QiDongActivity.class);
+                startActivity(intent);//直接打开首页
             }
         }
     }
