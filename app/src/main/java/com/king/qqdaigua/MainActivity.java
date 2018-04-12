@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     public static String app_name = "帝王代挂";
     public static String app_subName = " For Android";
     public static String admin_pwd = "123456";
+    public static String app_url = "https://www.dkingdg.com/";
+    public static String app_buy = "https://www.dkingdg.com/buy/";
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
@@ -40,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * <pre>
      * 基本功能：加载介绍界面或主页面
      * 编写：Jason
-     * </pre>
      */
     private class LoadMainTabTask implements Runnable {
         @Override

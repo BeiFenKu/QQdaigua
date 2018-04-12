@@ -118,7 +118,6 @@
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入要开通的QQ密码..."
-            android:inputType="textPassword"
             android:padding="5dp"
             android:visibility="invisible"
             android:paddingRight="10dp"
@@ -142,7 +141,7 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:background="@color/gray"
-            app:srcCompat="@mipmap/pwd"/>
+            app:srcCompat="@mipmap/kami"/>
 
         <EditText
             android:id="@+id/et_km"
@@ -155,7 +154,6 @@
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入卡密..."
-            android:inputType="textPassword"
             android:padding="5dp"
             android:paddingRight="10dp"
             android:textSize="15dp"/>
