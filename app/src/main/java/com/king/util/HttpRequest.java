@@ -85,15 +85,19 @@ public class HttpRequest extends Thread {
             String type = jsonObject1.getString("type");
             if (type.equals("login")) {
                 //登录判断
-                String qq = jsonObject1.getString("qq");
-                String pwd = jsonObject1.getString("pwd");
-                body = new FormBody.Builder().add("qq", qq).add("pwd", pwd).build();
+                body = new FormBody.Builder().build();
             } else if (type.equals("pay")){
                 //开通判断
                 String qq = jsonObject1.getString("qq");
                 String kami = jsonObject1.getString("kami");
                 String pwd = jsonObject1.getString("pwd");
                 body = new FormBody.Builder().add("qq", qq).add("cami", kami).add("cpwd", pwd).build();
+            } else if (type.equals("board")){
+                //公告
+                body = new FormBody.Builder().build();
+            } else if (type.equals("black")){
+                //代挂信息获取
+                body = new FormBody.Builder().build();
             }
             Request request = new Request.Builder().url(url).post(body).build();
             Response response = client.newCall(request).execute();
@@ -103,16 +107,23 @@ public class HttpRequest extends Thread {
                 if (type.equals("login")) {
                     // 登录判断
                     message.what = 1;
-                    String error_decode = new JSONObject(str).getString("error");
-                    JSONObject jsonObject = new JSONObject(str);
-                    jsonObject.put("error", error_decode);
-                    str = jsonObject.toString();
                 } else if (type.equals("pay")){
+                    //购买代挂判断
                     message.what = 2;
                     String error_decode = new JSONObject(str).getString("error");
                     JSONObject jsonObject = new JSONObject(str);
                     jsonObject.put("error", error_decode);
                     str = jsonObject.toString();
+                } else if (type.equals("board")){
+                    //公告获取判断
+                    message.what = 3;
+                    String error_decode = new JSONObject(str).getString("error");
+                    JSONObject jsonObject = new JSONObject(str);
+                    jsonObject.put("error", error_decode);
+                    str = jsonObject.toString();
+                } else if (type.equals("black")){
+                    //代挂信息获取
+                    message.what = 4;
                 }
                 Log.e("服务器相应内容：", str);
                 message.obj = str;

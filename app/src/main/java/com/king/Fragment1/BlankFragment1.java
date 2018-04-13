@@ -31,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.king.Fragment2.YH_Fragment;
 import com.king.ewrite.CircleImageView;
 import com.king.qqdaigua.MainActivity;
 import com.king.qqdaigua.R;
@@ -113,7 +114,6 @@ public class BlankFragment1 extends Fragment {
     }
 
     private void checkReamber() {
-        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean isRemenber = preferences.getBoolean("cb_remaber", false);
         String user_qq = preferences.getString("account", "123455");
         SetImageViewUtil.setImageToImageView(image_touxiang, "http://q2.qlogo" +
@@ -194,11 +194,10 @@ public class BlankFragment1 extends Fragment {
                         editor = preferences.edit();
                         editor.putString("user_qq", account);
                         editor.putString("account", account);
+                        editor.putString("pwd", pwd);
                         if (cb_remaber.isChecked()) {
-                            editor.putString("pwd", pwd);
                             editor.putBoolean("cb_remaber", true);
                         } else {
-                            editor.putString("pwd", "");
                             editor.putBoolean("cb_remaber", false);
                         }
                         ajax_login(account, pwd);
@@ -234,7 +233,7 @@ public class BlankFragment1 extends Fragment {
         bt_zh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openURL(MainActivity.app_url+"find.html");
+                openURL(MainActivity.app_url + "find.html");
             }
         });
         bt_buy = (Button) view.findViewById(R.id.bt_buy);
@@ -244,7 +243,7 @@ public class BlankFragment1 extends Fragment {
                 openURL(MainActivity.app_buy);
             }
         });
-        title_img = (ImageView) view.findViewById(R.id.title_img) ;
+        title_img = (ImageView) view.findViewById(R.id.title_img);
 
         tv_fail = (TextView) view.findViewById(R.id.textView);
         tv_fail.setOnClickListener(new View.OnClickListener() {
@@ -253,9 +252,12 @@ public class BlankFragment1 extends Fragment {
                 new dialog1_admin().show(getFragmentManager(), "");
             }
         });
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String user_qq = preferences.getString("account", "123455");
         image_touxiang = (CircleImageView) view.findViewById(R.id.image_touxiang);
         SetImageViewUtil.setImageToImageView(image_touxiang, "http://q2.qlogo" +
-                ".cn/headimg_dl?dst_uin=123455&spec=100");
+                ".cn/headimg_dl?dst_uin=" + user_qq + "&spec=100");
         animation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(1000);
         animation.setFillAfter(true);
@@ -316,11 +318,10 @@ public class BlankFragment1 extends Fragment {
         dialog_login.setCancelable(false);
         dialog_login.show();
         JSONObject jsonobject = new JSONObject();
-        String post_url = MainActivity.app_url + "ajax/dg.php?ajax=true&star=post&do=yewu&info=login";
+        String post_url = MainActivity.web_jiekou + "api/submit.php?act=query&qq=" + qq + "&pwd=" +
+                pwd;
         try {
             jsonobject.put("type", "login");
-            jsonobject.put("qq", qq);
-            jsonobject.put("pwd", pwd);
             HttpRequest http = new HttpRequest(post_url, jsonobject.toString(), handler);
             http.start();
         } catch (JSONException e) {
@@ -336,14 +337,18 @@ public class BlankFragment1 extends Fragment {
                 try {
                     JSONObject json = new JSONObject((String) msg.obj);
                     String code = json.getString("code");
-                    String message = json.getString("error");
-                    if (code.equals("0")) {
+                    String sid = json.getString("id");
+                    if (code.equals("1")) {
                         //登录成功
+                        editor.putString("sid", sid);
+                        editor.apply();
+                        Toast.makeText(getContext(), "登录成功", Toast.LENGTH_SHORT).show();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id
+                                .content_main, new YH_Fragment()).commit();
                         dialog_login.cancel();
-                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                     } else {
+                        Toast.makeText(getContext(), "登录失败：密码错误或者未开通代挂", Toast.LENGTH_SHORT).show();
                         dialog_login.cancel();
-                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static String admin_pwd = "123456";
     public static String app_url = "https://www.dkingdg.com/";
     public static String app_buy = "https://www.dkingdg.com/buy/";
+    public static String web_jiekou = "http://api.52dg.gg/";
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initv();
-        toolbar.setTitle("");
         new Handler().postDelayed(new LoadMainTabTask(), 0);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new YH_Fragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new BlankFragment1())
+                .commit();
     }
 
     /**
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void initv() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.rgb(24, 180, 237));
-        toolbar.setTitle(app_name + app_subName);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
