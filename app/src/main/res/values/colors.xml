@@ -10,4 +10,6 @@
     <color name="bt1_hold">#1497c7</color>
     <color name="bt2_hold">#d9d9d9</color>
     <color name="black">#000000</color>
+    <color name="mestitle_gray">#E7E7E7</color>
+    <color name="red">#FF0000</color>
 </resources>

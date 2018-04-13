@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.king.Fragment1.BlankFragment1;
+import com.king.Fragment2.YH_Fragment;
 import com.king.util.OperatingSharedPreferences;
 
 
@@ -36,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initv();
+        toolbar.setTitle("");
         new Handler().postDelayed(new LoadMainTabTask(), 0);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new BlankFragment1()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new YH_Fragment()).commit();
     }
 
     /**

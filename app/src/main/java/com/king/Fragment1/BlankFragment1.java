@@ -54,6 +54,7 @@ public class BlankFragment1 extends Fragment {
     private Button bt_zh, bt_login, bt_regkm, bt_buy;
     private ProgressDialog dialog_login;
     private TextView et_km;
+    private ImageView title_img;
 
     //    登录/注册 控制开关
     private Button bt_reg, bt_loginback;
@@ -243,6 +244,7 @@ public class BlankFragment1 extends Fragment {
                 openURL(MainActivity.app_buy);
             }
         });
+        title_img = (ImageView) view.findViewById(R.id.title_img) ;
 
         tv_fail = (TextView) view.findViewById(R.id.textView);
         tv_fail.setOnClickListener(new View.OnClickListener() {

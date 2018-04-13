@@ -1,0 +1,439 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:context="com.king.Fragment2.YH_Fragment">
+
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/mestitle_gray"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:src="@mipmap/futitle_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/img1"
+            android:text="@string/welcome"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rl1"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:background="@color/mestitle_gray"
+            android:id="@+id/ll5"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/ll6"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:textColor="@color/white"
+                        android:id="@+id/bt_xufei"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/king_button"
+                        android:text="续费[剩余XX天]"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/king_button1"
+                        android:text="漏挂补挂"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/ll7"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="0dp">
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/king_button1"
+                        android:text="客服：17768819552"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="0dp">
+                    <Button
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/king_button"
+                        android:text="更新密码"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="当前QQ：XXX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/tv_dqqq"
+                    android:textStyle="normal|bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:text="拉黑状态"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textView6"
+                    android:layout_alignParentStart="true"
+                    android:textSize="15sp"
+                    android:layout_marginStart="88dp"
+                    android:layout_marginTop="58dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/lhzt"/>
+
+                <TextView
+                    android:text="代挂等级："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="83dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/textView8"/>
+
+                <TextView
+                    android:text="VIP 5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toRightOf="@id/textView8"
+                    android:textSize="15sp"
+                    android:textColor="@color/red"
+                    android:layout_marginStart="88dp"
+                    android:layout_marginTop="83dp"
+                    android:id="@+id/tv_viplevel"/>
+
+                <TextView
+                    android:text="当前状态："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/textView6"
+                    android:layout_alignBaseline="@+id/lhzt"
+                    android:layout_alignBottom="@+id/lhzt"
+                    android:layout_alignStart="@+id/textView8"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:padding="15dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_board"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="此处显示网络获取的公告"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="240dp"
+        android:layout_alignParentBottom="true">
+
+
+        <LinearLayout
+            android:id="@+id/ll8"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="- - - 帝王代挂操作区 - - -"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll9"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_alignParentBottom="true"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="10dp"
+                android:text="- - - CopyRight: KING | IDEA: Android Studio- - -"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/ll8"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:layout_above="@+id/ll9">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/img_xz"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/htt_xz"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:text="QQ勋章墙[已关闭]"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/tv_xz"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/img_mqq"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/htt_sjqq"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:text="手机在线[已关闭]"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/tv_mqq"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/img_pcqq"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/htt_pcqq"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:text="电脑在线[已关闭]"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/tv_pcqq"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/img_music"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/htt_yy"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:text="QQ音乐[已关闭]"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/tv_music"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/img_guanjia"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/htt_gj"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:text="电脑管家[已关闭]"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/tv_guanjia"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/img_game"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/htt_yx"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:text="QQ手游[已关闭]"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/tv_game"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
