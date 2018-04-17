@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@mipmap/king_bj"
-                tools:context="com.king.Fragment1.BlankFragment1">
+                tools:context="com.king.Login_Fragment.BlankFragment1">
 
 
     <TextView
@@ -262,7 +262,7 @@
         android:layout_height="135dp"
         android:layout_below="@+id/tv_kf"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@mipmap/moren_qq"/>
+        app:srcCompat="@mipmap/ic_launcher"/>
 
     <LinearLayout
         android:id="@+id/ll3"

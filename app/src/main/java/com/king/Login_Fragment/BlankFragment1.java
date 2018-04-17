@@ -1,22 +1,15 @@
-package com.king.Fragment1;
+package com.king.Login_Fragment;
 
 
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.king.Fragment2.YH_Fragment;
+import com.king.YH_Fragment.YH_Fragment;
 import com.king.ewrite.CircleImageView;
 import com.king.qqdaigua.MainActivity;
 import com.king.qqdaigua.R;
@@ -75,7 +68,7 @@ public class BlankFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.blank_fragment1, container, false);
-        checkInternet();
+//        checkInternet();
         init();
         checkReamber();
 
@@ -312,11 +305,20 @@ public class BlankFragment1 extends Fragment {
      * @param pwd 密码
      */
     private void ajax_login(String qq, String pwd) {
-        dialog_login = new ProgressDialog(getContext());
-        dialog_login.setTitle("登录中");
-        dialog_login.setMessage("登录中，请稍等...");
-        dialog_login.setCancelable(false);
-        dialog_login.show();
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    dialog_login = new ProgressDialog(getContext());
+                    dialog_login.setTitle("登录中");
+                    dialog_login.setMessage("登录中，请稍等...");
+                    dialog_login.setCancelable(false);
+                    if (!dialog_login.isShowing()) {
+                        dialog_login.show();
+                    }
+                }
+            });
+        }
         JSONObject jsonobject = new JSONObject();
         String post_url = MainActivity.web_jiekou + "api/submit.php?act=query&qq=" + qq + "&pwd=" +
                 pwd;
@@ -342,12 +344,22 @@ public class BlankFragment1 extends Fragment {
                         //登录成功
                         editor.putString("sid", sid);
                         editor.apply();
-                        Toast.makeText(getContext(), "登录成功", Toast.LENGTH_SHORT).show();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getContext(), "登录成功", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id
                                 .content_main, new YH_Fragment()).commit();
                         dialog_login.cancel();
                     } else {
-                        Toast.makeText(getContext(), "登录失败：密码错误或者未开通代挂", Toast.LENGTH_SHORT).show();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getContext(), "登录失败：密码错误或者未开通代挂", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         dialog_login.cancel();
                     }
                 } catch (JSONException e) {

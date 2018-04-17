@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                tools:context="com.king.Fragment2.YH_Fragment">
+                tools:context="com.king.YH_Fragment.YH_Fragment">
 
 
     <RelativeLayout
@@ -81,6 +81,7 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/bt_lougua"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/king_button1"
@@ -117,6 +118,7 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/bt_gengxin"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/king_button"
@@ -196,14 +198,14 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:visibility="invisible"
                     android:id="@+id/tv_bt_jiechu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lhzt"
                     android:layout_marginLeft="118dp"
                     android:text="解除拉黑"
-                    android:textColor="@color/red"
-                    android:visibility="invisible"/>
+                    android:textColor="@color/red"/>
 
             </RelativeLayout>
 
@@ -270,7 +272,109 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/ll_bgbg"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll9"
+            android:layout_alignTop="@+id/ll8"
+            android:layout_marginTop="20dp">
+            <ScrollView
+                android:layout_above="@+id/ll10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/group_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/rd_1"
+                    android:text="电脑管家"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/rd_2"
+                    android:text="电脑QQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/rd_3"
+                    android:text="手机QQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/rd_4"
+                    android:text="勋章墙"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/rd_5"
+                    android:text="QQ音乐"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/rd_6"
+                    android:text="QQ手游"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/rd_7"
+                    android:text="空间访客（易冻结）"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+
+            </RadioGroup>
+            </ScrollView>
+            <LinearLayout
+                android:background="@color/mestitle_gray"
+                android:id="@+id/ll10"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/bt_lou_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/king_button"
+                        android:text="提交"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/bt_lou_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/king_button1"
+                        android:text="取消"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
         <LinearLayout
+            android:id="@+id/ll_moren"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/ll9"
@@ -450,6 +554,91 @@
                 </RelativeLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:id="@+id/img_kjfk"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
+                        android:src="@mipmap/htt_kjfk"/>
+
+                    <TextView
+                        android:id="@+id/tv_kjfk"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center"
+                        android:text="空间访客[已关闭]"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:id="@+id/img_weishi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
+                        android:src="@mipmap/htt_weishi"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center"
+                        android:text="微视代挂[开发中]"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:id="@+id/img_load"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
+                        android:src="@mipmap/htt_load"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center"
+                        android:text="等待开发..."
+                        android:textColor="@color/black"
+                        android:textSize="12dp"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

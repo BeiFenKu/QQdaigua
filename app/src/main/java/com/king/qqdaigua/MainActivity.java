@@ -1,7 +1,6 @@
 package com.king.qqdaigua;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,10 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import com.king.Fragment1.BlankFragment1;
-import com.king.Fragment2.YH_Fragment;
+import com.king.Login_Fragment.BlankFragment1;
 import com.king.util.OperatingSharedPreferences;
 
 
