@@ -1,11 +1,5 @@
 package com.king.util;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
-import android.util.Log;
-
 import java.io.IOException;
 
 /**
@@ -27,7 +21,7 @@ public class InternetCheck {
     public static boolean Check() {
         Runtime runtime = Runtime.getRuntime();
         try {
-            Process process = runtime.exec("ping -c 3 www.baidu.com");
+            Process process = runtime.exec("ping -c 3 1.1.1.1");
             int ret = process.waitFor();
 //            Log.e("Avalible", "Process:"+ret);
             if (ret == 0) {

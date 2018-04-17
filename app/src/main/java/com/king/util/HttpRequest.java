@@ -6,9 +6,6 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -115,11 +112,14 @@ public class HttpRequest extends Thread {
             } else if (type.equals("bg")) {
                 //代挂补挂
                 body = new FormBody.Builder().build();
+            } else if (type.equals("update")) {
+                //检测更新
+                body = new FormBody.Builder().build();
             }
             Request request = new Request.Builder().url(url).post(body).build();
             Response response = client.newCall(request).execute();
             message = new Message();
-            if (response.isSuccessful()) {
+            if (true) {
                 String str = response.body().string().toString();
                 if (type.equals("login")) {
                     // 登录判断
@@ -152,34 +152,20 @@ public class HttpRequest extends Thread {
                     message.what = 7;
                 } else if (type.equals("gengx")) {
                     //代挂更新密码
-                    String cookie = "";
-                    String head_text = response.headers().toString();
-                    Log.d("qqqqqq", head_text);
-                    String pattern = "set-cookie\\:\\s(\\S+)\\;";
-                    Pattern r = Pattern.compile(pattern);
-                    Matcher m = r.matcher(head_text);
-                    if (m.find()) {
-                        Log.e("已匹配到Cookie", m.group(1));
-                        cookie = m.group(1);
-                    } else {
-                        Log.e("未匹配到Cookie", "");
-                    }
-
-                    request.newBuilder().url("http://kking.daigua" +
+                    String cookie = response.headers().get("Set-cookie").toString();
+                    request = request.newBuilder().url("http://kking.daigua" +
                             ".org/ajax/dg?ajax=true&star=post&do=yewu&info=upqqpwd").header
-                            ("set-cookie", cookie).post(body1)
+                            ("Cookie", cookie).post(body1)
                             .build();
                     response = client.newCall(request).execute();
-                    if (response.isSuccessful()) {
-                        str = response.body().string().toString();
-                    } else {
-                        str = "{\"code\":1,\"error\":\"" + str + "\"}";
-                    }
-
+                    str = response.body().string().toString();
                     message.what = 8;
                 } else if (type.equals("bg")) {
                     //代挂解除拉黑
                     message.what = 9;
+                } else if (type.equals("update")) {
+                    //检测更新
+                    message.what = 10;
                 }
                 Log.e("服务器相应内容：", str);
                 message.obj = str;

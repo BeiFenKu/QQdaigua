@@ -9,14 +9,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".PowerSplashActivity">
+        <activity android:name=".PowerSplashActivity"/>
 
-        </activity>
-        <activity android:name=".QiDongActivity"></activity>
+        <activity android:name=".QiDongActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

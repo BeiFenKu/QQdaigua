@@ -2,10 +2,12 @@ package com.king.YH_Fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -78,7 +80,7 @@ public class YH_Fragment extends Fragment {
     private Button bt_lougua;
     private RelativeLayout ll_bgbg;
     private LinearLayout ll_moren;
-    private Button bt_lou_cancel, bt_lou_submit;
+    private Button bt_lou_cancel, bt_lou_submit, bt_kf;
     private RadioGroup group_1;
     private RadioButton group_rb;
     private ImageView img_kjfk;
@@ -110,6 +112,8 @@ public class YH_Fragment extends Fragment {
         setBlack();
         return view;
     }
+
+
 
     private void setBlack() {
         sid = preferences.getString("sid", "");
@@ -237,8 +241,8 @@ public class YH_Fragment extends Fragment {
                 try {
                     JSONObject json = new JSONObject((String) msg.obj);
                     String code = json.getString("code");
-                    if (code.equals("1")){
-                        if (getActivity() != null){
+                    if (code.equals("1")) {
+                        if (getActivity() != null) {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -249,7 +253,7 @@ public class YH_Fragment extends Fragment {
                             });
                         }
                     } else {
-                        if (getActivity() != null){
+                        if (getActivity() != null) {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -271,7 +275,7 @@ public class YH_Fragment extends Fragment {
     };
 
     private void bindviews() {
-        if (getActivity() != null){
+        if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -281,13 +285,20 @@ public class YH_Fragment extends Fragment {
                         pgDialog.setMessage("资源搜寻中，请稍等...");
                         pgDialog.show();
                         pgDialog.setCancelable(false);
-                    } catch (Exception e){
+                    } catch (Exception e) {
 
                     }
                 }
             });
         }
 
+        bt_kf = (Button) view.findViewById(R.id.bt_kf);
+        bt_kf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openURL("http://wpa.qq.com/msgrd?v=3&uin=1776885812&site=qq&menu=yes");
+            }
+        });
         ll_bgbg = (RelativeLayout) view.findViewById(R.id.ll_bgbg);
         ll_moren = (LinearLayout) view.findViewById(R.id.ll_moren);
         bt_lougua = (Button) view.findViewById(R.id.bt_lougua);
@@ -592,5 +603,13 @@ public class YH_Fragment extends Fragment {
                     break;
             }
         }
+    }
+
+    private void openURL(String s) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(s);
+        intent.setData(content_url);
+        startActivity(intent);
     }
 }

@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,9 @@ import org.json.JSONObject;
  */
 public class BlankFragment1 extends Fragment {
 
+    //控制密码明文显示否  0密文 1明文
+    private String eye_sign = "0";
+
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private View view;
@@ -60,6 +65,8 @@ public class BlankFragment1 extends Fragment {
     private TextView et_reg_account, et_reg_pwd;
     private RelativeLayout rl_regkm;
     private LinearLayout ll2, ll4;
+    private ImageView eye;
+    private ProgressDialog pgDialog;
 
     public BlankFragment1() {
     }
@@ -68,7 +75,8 @@ public class BlankFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.blank_fragment1, container, false);
-//        checkInternet();
+        checkInternet();
+
         init();
         checkReamber();
 
@@ -76,11 +84,18 @@ public class BlankFragment1 extends Fragment {
     }
 
     private void checkInternet() {
-        final ProgressDialog pgDialog = new ProgressDialog(getContext());
-        pgDialog.setTitle("检查网络中");
-        pgDialog.setMessage("检查网络中，请稍等...");
-        pgDialog.show();
-        pgDialog.setCancelable(false);
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    pgDialog = new ProgressDialog(getContext());
+                    pgDialog.setTitle("检查网络中");
+                    pgDialog.setMessage("检查网络中，请稍等...");
+                    pgDialog.show();
+                    pgDialog.setCancelable(false);
+                }
+            });
+        }
         new Thread() {
             @Override
             public void run() {
@@ -268,6 +283,35 @@ public class BlankFragment1 extends Fragment {
                 image_touxiang.startAnimation(animation);
             }
         });
+        eye = (ImageView) view.findViewById(R.id.eye);
+        eye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (eye_sign.equals("0")) {
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                eye.setImageDrawable(getResources().getDrawable(R.mipmap.eye_open));
+                            }
+                        });
+                    }
+                    et_pwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    eye_sign = "1";
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                eye.setImageDrawable(getResources().getDrawable(R.mipmap.eye_close));
+                            }
+                        });
+                    }
+                    et_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    eye_sign = "0";
+                }
+            }
+        });
     }
 
     /***
@@ -392,7 +436,7 @@ public class BlankFragment1 extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            } else {
+            }  else {
                 dialog_login.cancel();
                 Toast.makeText(getContext(), "请求失败，请稍等登录", Toast.LENGTH_LONG).show();
             }
@@ -436,5 +480,7 @@ public class BlankFragment1 extends Fragment {
         intent.setData(content_url);
         startActivity(intent);
     }
+
+
 
 }

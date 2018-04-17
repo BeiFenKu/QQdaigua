@@ -32,6 +32,7 @@ public class gengxin_dialog extends DialogFragment {
     private Button bt_submit;
     private ProgressDialog gengxDialog;
     private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     private String sid, new_pwd;
     private EditText et_npwd;
     private String user;
@@ -49,7 +50,7 @@ public class gengxin_dialog extends DialogFragment {
     private void bindViews() {
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sid = preferences.getString("sid", "");
-        user = preferences.getString("account","");
+        user = preferences.getString("account", "");
         pwd = preferences.getString("pwd", "");
 
         et_npwd = (EditText) view.findViewById(R.id.et_npwd);
@@ -104,6 +105,10 @@ public class gengxin_dialog extends DialogFragment {
                     JSONObject json = new JSONObject((String) msg.obj);
                     String code = json.getString("code");
                     if (code.equals("0")) {
+
+                        editor = preferences.edit();
+                        editor.putString("pwd", new_pwd);
+                        editor.apply();
                         handler1.post(new Runnable() {
                             @Override
                             public void run() {
@@ -124,9 +129,6 @@ public class gengxin_dialog extends DialogFragment {
                                         .show();
                             }
                         });
-                        Toast.makeText(getContext(), "更新失败，原因如下：\n1.21点-10点禁止改密\n", Toast
-                                .LENGTH_LONG)
-                                .show();
                         getDialog().cancel();
                     }
                 } catch (JSONException e) {

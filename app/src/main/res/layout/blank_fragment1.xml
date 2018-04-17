@@ -121,7 +121,18 @@
             android:padding="5dp"
             android:visibility="invisible"
             android:paddingRight="10dp"
-            android:textSize="15dp"/>
+            android:textSize="15dp">
+
+
+        </EditText>
+
+        <ImageView
+            android:id="@+id/eye"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/eye_close"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
 

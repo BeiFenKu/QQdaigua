@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:padding="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/head"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"/>
+
+    <TextView
+        android:text="帝王代挂"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:layout_below="@+id/head"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="V3.0.8.422"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="16dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:text="Copyright@ 2018 KingLee. All Rights Reserved"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:id="@+id/textView5"/>
+
+    <TextView
+        android:text="服务条款   |   隐私政策"
+        android:gravity="center"
+        android:textColor="@color/blue_title"
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:layout_above="@+id/textView5"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/textView9"/>
+
+    <TextView
+        android:text="化繁为简，\n万物起源Java\n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:id="@+id/textView7"
+        android:layout_above="@+id/textView9"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp"/>
+
+
+</RelativeLayout>

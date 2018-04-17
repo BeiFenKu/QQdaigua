@@ -1,30 +1,27 @@
 package com.king.qqdaigua;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+
+import java.util.ArrayList;
 /*
  * 基本功能：展示开机引导页
  * 创建：Jason
  */
-public class PowerSplashActivity extends Activity {
+public class PowerSplashActivity extends AppCompatActivity {
     ViewPager viewPager;
     ArrayList<View> list;
     ViewGroup main, group;

@@ -6,4 +6,12 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item android:id="@+id/action_settings1"
+          android:title="检查更新"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+    <item android:id="@+id/action_settings2"
+          android:title="关于"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
 </menu>
