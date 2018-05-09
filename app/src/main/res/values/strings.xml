@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">帝王代挂</string>
-    <string name="action_settings">等级计算器</string>
+    <string name="app_name1">帝王代挂 For Android</string>
+    <string name="app_kefuqq">客服：576777915</string>
+    <string name="app_ver">V3.2</string>
+    <string name="app_copyright">Copyright@ 2018 KingLee. All Rights Reserved</string>
     <string name="welcome">欢迎使用帝王代挂，祝您生活愉快</string>
+    <string name="act_top">- - - 帝王代挂操作区 - - -</string>
+    <string name="act_bottom">- - - CopyRight: KING | IDEA: Android Studio- - -</string>
+    <string name="action_settings">等级计算器</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

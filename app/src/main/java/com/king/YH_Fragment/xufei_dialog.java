@@ -1,7 +1,9 @@
 package com.king.YH_Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.king.qqdaigua.MainActivity;
@@ -35,6 +38,7 @@ public class xufei_dialog extends DialogFragment {
     private ProgressDialog xufeiDialog;
 
     private String user, pwd, sid;
+    private TextView tv_buy;
 
     @Nullable
     @Override
@@ -51,6 +55,13 @@ public class xufei_dialog extends DialogFragment {
         sid = preferences.getString("sid", "");
         user = preferences.getString("account", "");
         pwd = preferences.getString("pwd", "");
+        tv_buy = (TextView) view.findViewById(R.id.tv_buy);
+        tv_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openURL(MainActivity.buy_url);
+            }
+        });
         et_kami = (EditText) view.findViewById(R.id.et_kami);
         bt_submit = (Button) view.findViewById(R.id.bt_submit);
         bt_submit.setOnClickListener(new View.OnClickListener() {
@@ -115,4 +126,12 @@ public class xufei_dialog extends DialogFragment {
             }
         }
     };
+
+    private void openURL(String s) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(s);
+        intent.setData(content_url);
+        startActivity(intent);
+    }
 }

@@ -21,7 +21,7 @@ public class InternetCheck {
     public static boolean Check() {
         Runtime runtime = Runtime.getRuntime();
         try {
-            Process process = runtime.exec("ping -c 3 1.1.1.1");
+            Process process = runtime.exec("ping -c 3 www.dkingdg.com");
             int ret = process.waitFor();
 //            Log.e("Avalible", "Process:"+ret);
             if (ret == 0) {

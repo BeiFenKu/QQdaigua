@@ -27,14 +27,17 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     //版本号控制更新提示
-    public static String app_ver = "3.0";
+    public static String app_ver = "3.2";
 
     public static String admin_pwd = "123456";
+    public static String app_qq = "1776885812";
     public static String app_name = "帝王代挂";
     public static String app_subName = " For Android";
     public static String app_url = "https://www.dkingdg.com/";
     public static String app_buy = "https://www.dkingdg.com/buy/";
     public static String web_jiekou = "http://api.52dg.gg/";
+    public static String web_jiekou1 = "http://kkkking.daigua.org/";
+    public static String buy_url = "https://www.dkingdg.com/buy/";
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                openURL(app_url);
                 Snackbar.make(v, "你已经长按", Snackbar.LENGTH_LONG)
                         .show();
                 return true;
@@ -116,10 +120,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new
+//                    caculer_Fragment()).commit();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getApplicationContext(), "等级计算器很快将和大家见面，请耐心等待", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "等级计算器即将到来", Toast.LENGTH_LONG)
+                            .show();
                 }
             });
             return true;
@@ -161,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setData(content_url);
         startActivity(intent);
     }
+
 
     Handler handler = new Handler() {
         @Override

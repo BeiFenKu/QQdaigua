@@ -13,11 +13,22 @@
         android:layout_alignParentStart="true"
         android:id="@+id/et_kami"/>
 
+    <TextView
+        android:text="【点击我购买官方卡密】"
+        android:textColor="@color/blue_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:id="@+id/tv_buy"
+        android:layout_below="@+id/et_kami"
+        android:layout_alignParentStart="true"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/et_kami"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/tv_buy"
         android:layout_alignParentStart="true">
 
         <Button
@@ -38,4 +49,5 @@
             android:text="取消"
             style="@style/Widget.AppCompat.Button.Borderless"/>
     </LinearLayout>
+
 </RelativeLayout>

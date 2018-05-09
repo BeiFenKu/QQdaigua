@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,8 +19,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +43,12 @@ import org.json.JSONObject;
  * A simple {@link Fragment} subclass.
  */
 public class YH_Fragment extends Fragment {
+
+    protected boolean useThemestatusBarColor = true;//是否使用特殊的标题栏背景颜色，android5
+    // .0以上可以设置状态栏背景色，如果不使用则使用透明色值
+    protected boolean useStatusBarColor = false;//是否使用状态栏文字和图标为暗色，如果状态栏采用了白色系，则需要使状态栏和图标为暗色，android6
+    // .0以上可以设置
+
     //判断网络任务是否完成 上限次数
     public static int sign_dialog_cancel = 2;
     private int sign_dialog = 0;
@@ -51,6 +60,11 @@ public class YH_Fragment extends Fragment {
     //    记录最近一次点击 开关项目ID
     private int switch_sign;
 
+
+    private ScaleAnimation sa1 = new ScaleAnimation(1, 0, 1, 1,
+            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1.0f);
+    private ScaleAnimation sa2 = new ScaleAnimation(0, 1, 1, 1,
+            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1.0f);
     private RotateAnimation animation, animation1;
     private ProgressDialog pgDialog, switchDialog;
     private SharedPreferences preferences;
@@ -97,22 +111,15 @@ public class YH_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        animation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(1000);
-        animation.setFillAfter(true);
-        animation1 = new RotateAnimation(360, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation
-                .RELATIVE_TO_SELF, 0.5f);
-        animation1.setDuration(1000);
-        animation1.setFillAfter(true);
 
         view = inflater.inflate(R.layout.fragment_yh, container, false);
         bindviews();
+        setTitle();
 
         setBoard();
         setBlack();
         return view;
     }
-
 
 
     private void setBlack() {
@@ -224,8 +231,25 @@ public class YH_Fragment extends Fragment {
                             ImgHui(imageViews[switch_sign]);
                             imageViews[switch_sign].startAnimation(animation1);
                         } else if (status[switch_sign].equals("1")) {
+                            if (switch_sign == 2) {
+                                word += "开启]";
+                                textViews[switch_sign].setText(word);
+                                imageViews[switch_sign].setImageDrawable(getResources().getDrawable(R
+                                        .mipmap.htt_sjqq));
+                                ImgLiang(imageViews[switch_sign]);
+                                imageViews[switch_sign].startAnimation(animation);
+                            } else {
+                                word += "开启]";
+                                textViews[switch_sign].setText(word);
+                                ImgLiang(imageViews[switch_sign]);
+                                imageViews[switch_sign].startAnimation(animation);
+                            }
+                        } else if (status[switch_sign].equals
+                                ("2")) {
                             word += "开启]";
                             textViews[switch_sign].setText(word);
+                            imageViews[switch_sign].setImageDrawable(getResources().getDrawable(R
+                                    .mipmap.htt_sjqq_android));
                             ImgLiang(imageViews[switch_sign]);
                             imageViews[switch_sign].startAnimation(animation);
                         }
@@ -268,6 +292,44 @@ public class YH_Fragment extends Fragment {
                     e.printStackTrace();
                 }
                 switchDialog.cancel();
+            } else if (msg.what == 11) {
+                try {
+                    JSONObject json = new JSONObject((String) msg.obj);
+                    String code = json.getString("code");
+                    if (code.equals("0")) {
+                        if(status[2].equals("1")){
+                            mirror_flip(status[2]);
+                            status[2] = "2";
+                        } else {
+                            mirror_flip(status[2]);
+                            status[2] = "1";
+                        }
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "切换成功", Toast
+                                            .LENGTH_LONG)
+                                            .show();
+                                }
+                            });
+                        }
+                    } else {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "切换失败，或已经是该状态", Toast
+                                            .LENGTH_LONG)
+                                            .show();
+                                }
+                            });
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                switchDialog.cancel();
             } else {
                 Toast.makeText(getContext(), "网络请求错误", Toast.LENGTH_SHORT).show();
             }
@@ -292,11 +354,20 @@ public class YH_Fragment extends Fragment {
             });
         }
 
+
+        animation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(1000);
+        animation.setFillAfter(true);
+        animation1 = new RotateAnimation(360, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation
+                .RELATIVE_TO_SELF, 0.5f);
+        animation1.setDuration(1000);
+        animation1.setFillAfter(true);
+
         bt_kf = (Button) view.findViewById(R.id.bt_kf);
         bt_kf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openURL("http://wpa.qq.com/msgrd?v=3&uin=1776885812&site=qq&menu=yes");
+                openURL("http://wpa.qq.com/msgrd?v=3&uin=" + MainActivity.app_qq + "&site=qq&menu=yes");
             }
         });
         ll_bgbg = (RelativeLayout) view.findViewById(R.id.ll_bgbg);
@@ -435,6 +506,13 @@ public class YH_Fragment extends Fragment {
             }
         });
         img_mqq = (ImageView) view.findViewById(R.id.img_mqq);
+        img_mqq.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setMqqStatus();
+                return true;
+            }
+        });
         img_mqq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -507,6 +585,27 @@ public class YH_Fragment extends Fragment {
 
     }
 
+    private void setMqqStatus() {
+        if (status[2].equals("0")) {
+            Toast.makeText(getContext(), "切换状态前需要打开该功能哦", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        switchDialog.show();
+        String post_url = MainActivity
+                .web_jiekou1 + "ajax/dg?ajax=true&star=post&do=yewu&info=login";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("type", "gengx_phonetype");
+            jsonObject.put("qq", user);
+            jsonObject.put("pwd", pwd);
+            jsonObject.put("status", status[2]);
+            HttpRequest http = new HttpRequest(post_url, jsonObject.toString(), handler);
+            http.start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void pgdialog_cancel() {
         sign_dialog++;
         if (sign_dialog == sign_dialog_cancel) {
@@ -560,7 +659,7 @@ public class YH_Fragment extends Fragment {
         String switch_name = switchName(sign);
         if (status[sign].equals("0")) {
             status[sign] = "1";
-        } else if (status[sign].equals("1")) {
+        } else if (status[sign].equals("1") || status[sign].equals("2")) {
             status[sign] = "0";
         }
         String post_url = MainActivity.web_jiekou + "api/submit" +
@@ -601,6 +700,18 @@ public class YH_Fragment extends Fragment {
                     word += "开启]";
                     textView[i].setText(word);
                     break;
+                case "2":
+                    imageViews[i].setImageDrawable(getResources().getDrawable(R.mipmap
+                            .htt_sjqq_android));
+
+                    word = "";
+                    word1 = textView[i].getText().toString();
+                    for (int j = 0; j < word1.length() - 3; j++) {
+                        word += word1.charAt(j);
+                    }
+                    word += "开启]";
+                    textView[i].setText(word);
+                    break;
             }
         }
     }
@@ -611,5 +722,68 @@ public class YH_Fragment extends Fragment {
         Uri content_url = Uri.parse(s);
         intent.setData(content_url);
         startActivity(intent);
+    }
+
+    private void mirror_flip(final String status){
+        sa1.setDuration(500);
+        sa2.setDuration(500);
+        sa1.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             * 动画开始时调用该方法
+             *
+             * @Override
+             */
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            /**
+             * 动画重复时调用该方法
+             *
+             * @Override
+             */
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            /**
+             * 动画结束时调用该方法
+             *
+             * @Override
+             */
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (status.equals("1")){
+                    imageViews[2].setImageDrawable(getResources().getDrawable(R.mipmap
+                            .htt_sjqq_android));
+                } else {
+                    imageViews[2].setImageDrawable(getResources().getDrawable(R.mipmap
+                            .htt_sjqq));
+                }
+                imageViews[2].startAnimation(sa2);
+            }
+        });
+        imageViews[2].startAnimation(sa1);
+    }
+
+    public void setTitle(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
+            View decorView = getActivity().getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            //根据上面设置是否对状态栏单独设置颜色
+            if (useThemestatusBarColor) {
+                getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.blue_title));
+            } else {
+                getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
+            }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4到5.0
+            WindowManager.LayoutParams localLayoutParams = getActivity().getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !useStatusBarColor) {//android6.0以后可以对状态栏文字颜色和图标进行修改
+            getActivity().getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
     }
 }

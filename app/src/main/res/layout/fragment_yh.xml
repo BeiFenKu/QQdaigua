@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -109,7 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/king_button1"
-                        android:text="客服：17768819552"/>
+                        android:text="@string/app_kefuqq"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -250,7 +251,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="- - - 帝王代挂操作区 - - -"
+                android:text="@string/act_top"
                 android:textAlignment="center"/>
 
         </LinearLayout>
@@ -267,7 +268,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="- - - CopyRight: KING | IDEA: Android Studio- - -"
+                android:text="@string/act_bottom"
                 android:textAlignment="center"
                 android:textSize="10dp"/>
 
@@ -439,6 +440,16 @@
                         android:text="手机在线[已关闭]"
                         android:textColor="@color/black"
                         android:textSize="12dp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        app:srcCompat="@mipmap/longpress_tip"
+                        android:layout_marginLeft="230dp"
+                        android:id="@+id/imageView5"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="75dp"/>
 
                 </RelativeLayout>
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
                 android:padding="10dp"
+                android:id="@+id/rl_1"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -15,7 +17,7 @@
         android:layout_marginTop="43dp"/>
 
     <TextView
-        android:text="帝王代挂"
+        android:text="@string/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -25,7 +27,7 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:text="V3.0.8.422"
+        android:text="@string/app_ver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
@@ -35,7 +37,7 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
-        android:text="Copyright@ 2018 KingLee. All Rights Reserved"
+        android:text="@string/app_copyright"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_alignParentBottom="true"
@@ -61,7 +63,14 @@
         android:id="@+id/textView7"
         android:layout_above="@+id/textView9"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="7dp"/>
+        android:layout_marginBottom="17dp"/>
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:srcCompat="@mipmap/close_circle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/imageView"/>
 
 </RelativeLayout>

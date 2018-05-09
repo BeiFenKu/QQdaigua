@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.king.qqdaigua.MainActivity;
+
 import org.json.JSONObject;
 
 import okhttp3.FormBody;
@@ -115,6 +117,18 @@ public class HttpRequest extends Thread {
             } else if (type.equals("update")) {
                 //检测更新
                 body = new FormBody.Builder().build();
+            } else if (type.equals("gengx_phonetype")){
+                //切换安卓/苹果在线状态
+                String qq = jsonObject1.getString("qq");
+                String pwd = jsonObject1.getString("pwd");
+                String status = jsonObject1.getString("status");
+                if (status.equals("1")){
+                    status = "2";
+                } else {
+                    status = "1";
+                }
+                body = new FormBody.Builder().add("qq", qq).add("pwd", pwd).build();
+                body1 = new FormBody.Builder().add("type", status).build();
             }
             Request request = new Request.Builder().url(url).post(body).build();
             Response response = client.newCall(request).execute();
@@ -153,9 +167,11 @@ public class HttpRequest extends Thread {
                 } else if (type.equals("gengx")) {
                     //代挂更新密码
                     String cookie = response.headers().get("Set-cookie").toString();
-                    request = request.newBuilder().url("http://kking.daigua" +
-                            ".org/ajax/dg?ajax=true&star=post&do=yewu&info=upqqpwd").header
-                            ("Cookie", cookie).post(body1)
+                    request = request.newBuilder().url
+                            (MainActivity
+                                    .web_jiekou1 + "ajax/dg?ajax=true&star=post&do=yewu&info=upqqpwd")
+                            .header
+                                    ("Cookie", cookie).post(body1)
                             .build();
                     response = client.newCall(request).execute();
                     str = response.body().string().toString();
@@ -166,6 +182,19 @@ public class HttpRequest extends Thread {
                 } else if (type.equals("update")) {
                     //检测更新
                     message.what = 10;
+                } else if (type.equals("gengx_phonetype")){
+                    //切换安卓/苹果在线状态
+                    //代挂更新密码
+                    String cookie = response.headers().get("Set-cookie").toString();
+                    request = request.newBuilder().url
+                            (MainActivity
+                                    .web_jiekou1 + "ajax/dg?ajax=true&star=post&do=yewu&info=phonetype")
+                            .header
+                                    ("Cookie", cookie).post(body1)
+                            .build();
+                    response = client.newCall(request).execute();
+                    str = response.body().string().toString();
+                    message.what = 11;
                 }
                 Log.e("服务器相应内容：", str);
                 message.obj = str;

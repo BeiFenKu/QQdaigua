@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="14dp"
-        android:text="客服：576777915"
+        android:text="@string/app_kefuqq"
         android:textColor="@color/kefuColor"
         android:textSize="16sp"
         android:textStyle="normal|bold"/>
@@ -34,7 +34,7 @@
             android:id="@+id/imageView2"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@color/gray"
+            android:background="@drawable/left_icon_shape_corners"
             app:srcCompat="@mipmap/account"/>
 
         <EditText
@@ -44,7 +44,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView2"
-            android:background="@color/white"
+            android:background="@drawable/right_edittext_shape_corners"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入代挂QQ帐号..."
@@ -60,7 +60,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView2"
-            android:background="@color/white"
+            android:background="@drawable/right_edittext_shape_corners"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入要开通的QQ帐号..."
@@ -69,6 +69,14 @@
             android:visibility="invisible"
             android:paddingRight="10dp"
             android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/multi"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/down_account"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
 
@@ -87,7 +95,7 @@
             android:id="@+id/imageView3"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@color/gray"
+            android:background="@drawable/left_icon_shape_corners"
             app:srcCompat="@mipmap/pwd"/>
 
         <EditText
@@ -97,7 +105,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView3"
-            android:background="@color/white"
+            android:background="@drawable/right_edittext_shape_corners"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入代挂QQ密码..."
@@ -114,7 +122,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView3"
-            android:background="@color/white"
+            android:background="@drawable/right_edittext_shape_corners"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入要开通的QQ密码..."
@@ -151,7 +159,7 @@
             android:id="@+id/imageView4"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@color/gray"
+            android:background="@drawable/left_icon_shape_corners"
             app:srcCompat="@mipmap/kami"/>
 
         <EditText
@@ -161,7 +169,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView4"
-            android:background="@color/white"
+            android:background="@drawable/right_edittext_shape_corners"
             android:ems="10"
             android:fontFamily="sans-serif"
             android:hint="请输入卡密..."

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.king.qqdaigua.MainActivity;
 import com.king.qqdaigua.R;
 import com.king.util.HttpRequest;
 
@@ -79,7 +80,8 @@ public class gengxin_dialog extends DialogFragment {
                     getDialog().cancel();
                     gengxDialog.cancel();
                 } else {
-                    String post_url = "http://kking.daigua.org/ajax/dg?ajax=true&star=post&do=yewu&info=login";
+                    String post_url = MainActivity
+                            .web_jiekou1 + "ajax/dg?ajax=true&star=post&do=yewu&info=login";
                     JSONObject jsonObject = new JSONObject();
                     try {
                         jsonObject.put("type", "gengx");

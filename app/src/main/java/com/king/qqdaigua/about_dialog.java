@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.RelativeLayout;
 
 /**
  * Created by KingLee on 2018/4/17.
@@ -15,6 +16,8 @@ import android.view.Window;
 public class about_dialog extends DialogFragment {
 
     private View view;
+    private RelativeLayout r1_1;
+
 
     @Nullable
     @Override
@@ -22,6 +25,17 @@ public class about_dialog extends DialogFragment {
         view = inflater.inflate(R.layout.fragment_about, null);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        bindViews();
         return view;
+    }
+
+    private void bindViews() {
+        r1_1 = (RelativeLayout) view.findViewById(R.id.rl_1);
+        r1_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().cancel();
+            }
+        });
     }
 }
