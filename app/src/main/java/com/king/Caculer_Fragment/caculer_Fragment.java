@@ -29,7 +29,8 @@ import java.net.URL;
 
 public class caculer_Fragment extends Fragment {
 
-    private String level_url = "https://vip.qq.com/pk/index?param=1776885812";
+    private String level_qq = "576777915";
+    private String level_url = "https://vip.qq.com/pk/index?param=" + level_qq;
 
     private View view;
     private WebView webView;
@@ -78,34 +79,36 @@ public class caculer_Fragment extends Fragment {
             @Override
             public void onLoadResource(WebView view, final String paramAnonymousString) {
                 Log.e("拿到地址::::", "" + paramAnonymousString);
-//                if (paramAnonymousString.indexOf("vip.qq.com/pk/index?param") != -1) {
-                cookieManager = CookieManager.getInstance();
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            URL url = new URL(paramAnonymousString);
-                            HttpURLConnection urlConnection = (HttpURLConnection) url
-                                    .openConnection();
-                            urlConnection.setConnectTimeout(5000);
-                            urlConnection.setReadTimeout(5000);
-                            urlConnection.setRequestProperty("cookie", cookie);
-                            int responsecode = urlConnection.getResponseCode();
-                            if (responsecode == 200) {
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "utf-8"));
-                                String str = "";
-                                if ((str = reader.readLine()) != null) {
-                                    Log.e(paramAnonymousString + "拿到源码：", str);
+                if (paramAnonymousString.indexOf("vip.qq.com/pk/index?param") != -1) {
+                    cookieManager = CookieManager.getInstance();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                URL url = new URL(paramAnonymousString);
+                                HttpURLConnection urlConnection = (HttpURLConnection) url
+                                        .openConnection();
+                                urlConnection.setConnectTimeout(5000);
+                                urlConnection.setReadTimeout(5000);
+                                urlConnection.setRequestProperty("cookie", cookie);
+                                int responsecode = urlConnection.getResponseCode();
+                                if (responsecode == 200) {
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "utf-8"));
+
+                                    String str = "";
+                                    while ((str = reader.readLine()) != null) {
+                                        str = reader.readLine();
+                                        Log.e(paramAnonymousString + "拿到源码：", str);
+                                    }
+                                } else {
+                                    Log.e("获取不到网页的源码，服务器响应代码为：", "" + responsecode);
                                 }
-                            } else {
-                                Log.e("获取不到网页的源码，服务器响应代码为：", "" + responsecode);
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
-                    }
-                }.start();
-//                }
+                    }.start();
+                }
                 super.onLoadResource(view, paramAnonymousString);
             }
 

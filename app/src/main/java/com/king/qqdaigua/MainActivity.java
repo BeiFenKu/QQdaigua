@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.king.Caculer_Fragment.caculer_Fragment;
 import com.king.Login_Fragment.BlankFragment1;
 import com.king.YH_Fragment.update_dialog;
 import com.king.util.HttpRequest;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     //版本号控制更新提示
-    public static String app_ver = "3.2";
+    public static String app_ver = "3.3";
 
     public static String admin_pwd = "123456";
     public static String app_qq = "1776885812";
@@ -120,15 +121,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new
-//                    caculer_Fragment()).commit();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getApplicationContext(), "等级计算器即将到来", Toast.LENGTH_LONG)
-                            .show();
-                }
-            });
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new
+                    caculer_Fragment()).commit();
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Toast.makeText(getApplicationContext(), "等级计算器即将到来", Toast.LENGTH_LONG)
+//                            .show();
+//                }
+//            });
             return true;
         } else if (id == R.id.action_settings1) {
             updateCheck();
