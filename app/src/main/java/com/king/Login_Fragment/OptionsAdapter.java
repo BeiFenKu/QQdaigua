@@ -68,6 +68,9 @@ public class OptionsAdapter extends BaseAdapter {
         }
 
         holder.textView.setText(list.get(position));
+        if (position == list.size()){
+            holder.imageView.setImageResource(R.drawable.blank_24dp);
+        }
 
         //为下拉框选项文字部分设置事件，最终效果是点击将其文字填充到文本框
         holder.textView.setOnClickListener(new View.OnClickListener() {

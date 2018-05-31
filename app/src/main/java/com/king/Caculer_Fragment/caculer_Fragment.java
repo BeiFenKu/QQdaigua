@@ -11,9 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.king.qqdaigua.R;
@@ -23,6 +27,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.king.qqdaigua.R.id.web_view;
+
 /**
  * Created by KingLee on 2018/5/8.
  */
@@ -30,7 +36,7 @@ import java.net.URL;
 public class caculer_Fragment extends Fragment {
 
     private String level_qq = "576777915";
-    private String level_url = "https://vip.qq.com/pk/index?param=" + level_qq;
+    private String level_url = "https://vip.qq.com/pk/index?param=";
 
     private View view;
     private WebView webView;
@@ -39,6 +45,9 @@ public class caculer_Fragment extends Fragment {
     protected boolean useThemestatusBarColor = true;//是否使用特殊的标题栏背景颜色，android5
     // .0以上可以设置状态栏背景色，如果不使用则使用透明色值
     protected boolean useStatusBarColor = false;//是否使用状态栏文字和图标为暗色，如果状态栏采用了白色系，则需要使状态栏和图标为暗色，android6
+    private EditText editText;
+    private Button button;
+    private RelativeLayout relativeLayout;
     // .0以上可以设置
 
 
@@ -54,8 +63,27 @@ public class caculer_Fragment extends Fragment {
 
     private void bindViews() {
 
-
-        webView = (WebView) view.findViewById(R.id.web_view);
+        webView = (WebView) view.findViewById(web_view);
+        CookieSyncManager.createInstance(getContext());
+        cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookie();
+        CookieSyncManager.getInstance().sync();
+        relativeLayout = (RelativeLayout) view.findViewById(R.id.input_qq_rel);
+        editText = (EditText) view.findViewById(R.id.editText);
+        button = (Button) view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editText.getText().length() < 5) {
+                    Toast.makeText(getContext(), "QQ号输入不规范", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    level_qq = editText.getText().toString();
+                    relativeLayout.setVisibility(View.GONE);
+                    webView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUserAgentString("Mozilla/5.0 (Linux; Android 8.0; MI 6 Build/OPR1.170623.027; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044006 Mobile Safari/537.36 V1_AND_SQ_7.5.5_806_YYB_D QQ/7.5.5.3460 NetType/4G WebP/0.3.0 Pixel/1080");
@@ -63,14 +91,15 @@ public class caculer_Fragment extends Fragment {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100) {
-                    if (webView.getUrl().equals("https://h5.qzone.qq.com/mqzone/index")) {
+                    if (webView.getUrl().equals("https://h5.qzone.qq.com/mqzone/index") ||
+                            webView.getUrl().equals("https://h5.qzone.qq.com/mqzone/profile")) {
                         cookieManager = CookieManager.getInstance();
                         cookie = cookieManager.getCookie("https://h5.qzone.qq.com/mqzone/index");
                         Toast.makeText(getContext(),
                                 "登陆成功，如未查询成功，请重新登录查询",
                                 Toast
                                         .LENGTH_LONG).show();
-                        webView.loadUrl(level_url);
+                        webView.loadUrl(level_url + level_qq);
                     }
                 }
             }
@@ -78,13 +107,15 @@ public class caculer_Fragment extends Fragment {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onLoadResource(WebView view, final String paramAnonymousString) {
-                Log.e("拿到地址::::", "" + paramAnonymousString);
+//                Log.e("拿到地址::::", "" + paramAnonymousString);
                 if (paramAnonymousString.indexOf("vip.qq.com/pk/index?param") != -1) {
                     cookieManager = CookieManager.getInstance();
                     new Thread() {
                         @Override
                         public void run() {
                             try {
+                                String[] resource = new String[100];
+                                int sign = 0;
                                 URL url = new URL(paramAnonymousString);
                                 HttpURLConnection urlConnection = (HttpURLConnection) url
                                         .openConnection();
@@ -98,8 +129,12 @@ public class caculer_Fragment extends Fragment {
                                     String str = "";
                                     while ((str = reader.readLine()) != null) {
                                         str = reader.readLine();
-                                        Log.e(paramAnonymousString + "拿到源码：", str);
+//                                        Log.e(paramAnonymousString + "拿到源码：", str);
+                                        resource[sign++] = str;
                                     }
+//                                    for (int i = 0 ; i < resource.length; i ++){
+//                                        Log.e("源码",resource[i]);
+//                                    }
                                 } else {
                                     Log.e("获取不到网页的源码，服务器响应代码为：", "" + responsecode);
                                 }

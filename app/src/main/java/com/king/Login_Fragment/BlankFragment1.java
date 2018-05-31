@@ -288,9 +288,9 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
                         editor.putString("account", account);
                         editor.putString("pwd", pwd);
                         saveUserData(UserData, account, pwd, cb_remaber.isChecked());
+                        editor.apply();
                         ajax_login(account, pwd);
                     }
-                    editor.apply();
                 }
             }
         });
@@ -478,8 +478,10 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
                     JSONObject json = new JSONObject((String) msg.obj);
                     String code = json.getString("code");
                     String sid = json.getString("id");
+                    System.out.println("登录成功SID为"+sid);
                     if (code.equals("1")) {
                         //登录成功
+                        editor = preferences.edit();
                         editor.putString("sid", sid);
                         editor.apply();
                         handler.post(new Runnable() {

@@ -17,7 +17,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:text="请输入QQ帐号密码登录空间，\n自动为您获取信息并计算结果..."/>
+            android:text="请输入QQ帐号密码登录空间\n(不需要与查询QQ一致，任意QQ登录即可)，\n自动为您获取信息并计算结果..."/>
 
     </LinearLayout>
 
@@ -37,26 +37,22 @@
         android:background="@color/mestitle_gray"
         android:layout_marginTop="80dp">
 
-        <TextView
-            android:text="请先输入要查询的QQ号"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="77dp"
-            android:id="@+id/textView12"
-            android:layout_alignParentTop="true"
-            android:textSize="25dp"
-            android:layout_centerHorizontal="true"/>
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="12"
-            android:id="@+id/editText2"
-            android:layout_below="@+id/textView12"
+            android:inputType="text"
+            android:hint="请输入要查询计算的QQ号..."
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="91dp"
+            android:id="@+id/editText"/>
+
+        <Button
+            android:text="确认"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="158dp"
+            android:id="@+id/button"/>
     </RelativeLayout>
 
 </RelativeLayout>
