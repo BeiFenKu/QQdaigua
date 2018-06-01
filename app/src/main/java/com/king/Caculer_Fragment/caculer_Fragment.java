@@ -114,8 +114,8 @@ public class caculer_Fragment extends Fragment {
                         @Override
                         public void run() {
                             try {
-                                String[] resource = new String[100];
                                 int sign = 0;
+                                String text = "";
                                 URL url = new URL(paramAnonymousString);
                                 HttpURLConnection urlConnection = (HttpURLConnection) url
                                         .openConnection();
@@ -129,12 +129,19 @@ public class caculer_Fragment extends Fragment {
                                     String str = "";
                                     while ((str = reader.readLine()) != null) {
                                         str = reader.readLine();
-//                                        Log.e(paramAnonymousString + "拿到源码：", str);
-                                        resource[sign++] = str;
+                                        if (str.indexOf("//imgcache.gtimg.cn/club/platform/lib/seajs/sea-with-plugin-p-v2-2.2.1.js?_bid=250&max_age=2592000&v=4") != -1) {
+                                            sign = 1;
+                                        } else if (str.indexOf("seajs.config({") != -1) {
+                                            sign = 0;
+                                        }
+                                        if (sign == 1) {
+                                            text += "\n";
+                                            text += str;
+                                        }
+//                                        Log.e(paramAnonymousString + "拿到" + sign + "源码：", str);
+//                                        resource[sign++] = str;
                                     }
-//                                    for (int i = 0 ; i < resource.length; i ++){
-//                                        Log.e("源码",resource[i]);
-//                                    }
+                                    System.out.println("输出：" + text);
                                 } else {
                                     Log.e("获取不到网页的源码，服务器响应代码为：", "" + responsecode);
                                 }

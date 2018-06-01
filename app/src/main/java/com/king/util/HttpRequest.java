@@ -130,6 +130,7 @@ public class HttpRequest extends Thread {
                 body = new FormBody.Builder().add("qq", qq).add("pwd", pwd).build();
                 body1 = new FormBody.Builder().add("type", status).build();
             }
+            Log.e("请求URL：",url);
             Request request = new Request.Builder().url(url).post(body).build();
             Response response = client.newCall(request).execute();
             message = new Message();

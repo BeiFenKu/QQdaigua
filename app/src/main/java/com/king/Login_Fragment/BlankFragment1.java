@@ -47,7 +47,12 @@ import com.king.util.SetImageViewUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -209,7 +214,7 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
 
     private void checkReamber() {
         multi_count = preferences.getString("mu_count", "0");
-        if (multi_count != "0") {
+        if (!multi_count.equals("0")) {
             for (int i = 1; i <= Integer.valueOf(multi_count); i++) {
                 String qq = preferences.getString("mu_qq_" + i, "");
                 String pwd = preferences.getString("mu_pwd_" + i, "");
@@ -231,6 +236,12 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
             String pwd = preferences.getString("pwd", "");
             et_pwd.setText(pwd);
             cb_remaber.setChecked(true);
+        }
+        System.out.println("Shread记忆"+user_qq);
+        if (isRemenber){
+            System.out.println("记住了");
+        } else {
+            System.out.println("没有记住");
         }
     }
 
@@ -458,8 +469,13 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
             });
         }
         JSONObject jsonobject = new JSONObject();
-        String post_url = MainActivity.web_jiekou + "api/submit.php?act=query&qq=" + qq + "&pwd=" +
-                pwd;
+        String post_url = null;
+        try {
+            post_url = MainActivity.web_jiekou + "api/submit.php?act=query&qq=" + qq + "&pwd=" +
+                    URLEncoder.encode(pwd,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         try {
             jsonobject.put("type", "login");
             HttpRequest http = new HttpRequest(post_url, jsonobject.toString(), handler);
@@ -476,6 +492,12 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
                 //登录
                 try {
                     JSONObject json = new JSONObject((String) msg.obj);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date adddate = sdf.parse(json.getString("adddate"));
+                    Date enddate = sdf.parse(json.getString("enddate"));
+                    editor = preferences.edit();
+                    editor.putString("serverday", getGapCount(adddate,enddate)+"");
+                    editor.apply();
                     String code = json.getString("code");
                     String sid = json.getString("id");
                     System.out.println("登录成功SID为"+sid);
@@ -503,6 +525,8 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
                         dialog_login.cancel();
                     }
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
             } else if (msg.what == 2) {
@@ -648,6 +672,9 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
             case 4:
                 //移除下拉项数据
                 int delIndex = data.getInt("delIndex");
+                if (delIndex == data.size()){
+                    break;
+                }
                 Select_datas.remove(delIndex);
 
                 editor = preferences.edit();
@@ -773,5 +800,8 @@ public class BlankFragment1 extends Fragment implements Handler.Callback {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !useStatusBarColor) {//android6.0以后可以对状态栏文字颜色和图标进行修改
             getActivity().getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+    }
+    public static int getGapCount(Date startDate, Date endDate) {
+        return (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     }
 }

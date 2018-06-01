@@ -155,38 +155,33 @@
                     android:textSize="16sp"
                     android:textStyle="normal|bold"/>
 
-                <TextView
-                    android:id="@+id/textView8"
+                <RelativeLayout
+                    android:id="@+id/rl4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="83dp"
-                    android:text="代挂等级："
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="83dp">
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="代挂等级："
+                        android:textColor="@color/black"
+                        android:textSize="15sp"/>
 
-                <TextView
-                    android:id="@+id/tv_viplevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/textView8"
-                    android:layout_alignBottom="@+id/textView8"
-                    android:layout_alignStart="@+id/lhzt"
-                    android:text="VIP 5"
-                    android:textColor="@color/red"
-                    android:textSize="15sp"/>
+                    <TextView
+                        android:id="@+id/tv_viplevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VIP 5"
+                        android:textColor="@color/red"
+                        android:textSize="15sp"
+                        android:layout_alignLeft="@+id/textView8"
+                        android:layout_marginLeft="78dp"/>
+                </RelativeLayout>
 
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView8"
-                    android:layout_centerVertical="true"
-                    android:text="当前状态："
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
 
                 <TextView
                     android:id="@+id/lhzt"
@@ -208,6 +203,17 @@
                     android:layout_marginLeft="118dp"
                     android:text="解除拉黑"
                     android:textColor="@color/red"/>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前状态："
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignStart="@+id/tv_dqqq"/>
+
 
             </RelativeLayout>
 

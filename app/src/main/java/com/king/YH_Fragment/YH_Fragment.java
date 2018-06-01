@@ -101,6 +101,7 @@ public class YH_Fragment extends Fragment {
     private TextView tv_kjfk;
     private ImageView img_weishi;
     private ImageView img_load;
+    private RelativeLayout rl4;
 
 
     public YH_Fragment() {
@@ -169,6 +170,7 @@ public class YH_Fragment extends Fragment {
             } else if (msg.what == 4) {
                 try {
                     JSONObject json = new JSONObject((String) msg.obj);
+                    String serverday = preferences.getString("serverday", "");
                     String code = json.getString("code");
                     String black = json.getString("black");
                     String data = json.getString("data");
@@ -464,7 +466,13 @@ public class YH_Fragment extends Fragment {
                 }
             }
         });
+        rl4 = (RelativeLayout) view.findViewById(R.id.rl4);
+        rl4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         switchDialog = new ProgressDialog(getContext());
         switchDialog.setTitle("修改中");
         switchDialog.setMessage("修改中，请稍等...");
